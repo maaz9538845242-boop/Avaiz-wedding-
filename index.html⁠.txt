@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation | Mohammed Avaiz & Rifah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0d2818; /* Rich Emerald Dark */
+      --card-bg: #faf6f0;  /* Cream Ivory Paper */
+      --gold: #d4af37;
+      --gold-dark: #aa820a;
+      --text-dark: #2c221e;
+      --accent-rose: #9e4b6c;
+      --font-serif: 'Amiri', serif;
+      --font-cursive: 'Great Vibes', cursive;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #05130b;
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Mobile Container Simulation */
+    .app-container {
+      width: 100%;
+      max-width: 420px;
+      height: 100vh;
+      max-height: 880px;
+      background: var(--bg-color);
+      position: relative;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      border-radius: 16px;
+    }
+
+    section {
+      height: 100%;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      background: var(--card-bg);
+      border-bottom: 2px solid #e0d5c1;
+    }
+
+    /* SECTION 1: ENVELOPE / SEAL REVEAL */
+    .envelope-section {
+      background: var(--bg-color);
+      color: #fff;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .curtain-left, .curtain-right {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, #0f3820, #081d11);
+      transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 5;
+    }
+
+    .curtain-left { left: 0; border-right: 1px solid var(--gold); }
+    .curtain-right { right: 0; border-left: 1px solid var(--gold); }
+
+    .open .curtain-left { transform: translateX(-100%); }
+    .open .curtain-right { transform: translateX(100%); }
+
+    .wax-seal {
+      position: absolute;
+      z-index: 10;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--gold), var(--gold-dark));
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: all 0.6s ease;
+      border: 2px dashed #fff;
+    }
+
+    .open .wax-seal {
+      opacity: 0;
+      transform: scale(0) rotate(180deg);
+      pointer-events: none;
+    }
+
+    /* ARABIC CALLIGRAPHY / BISMILLAH */
+    .bismillah {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--gold-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    h1.names {
+      font-family: var(--font-cursive);
+      font-size: 2.6rem;
+      color: var(--accent-rose);
+      margin: 0.4rem 0;
+      line-height: 1.1;
+    }
+
+    .sub-title {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7a6b5d;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ANIMATED COUPLE ILLUSTRATION */
+    .couple-avatar {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      margin: 0.5rem 0;
+    }
+
+    .couple-avatar svg {
+      width: 100%;
+      height: 100%;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* EVENT CARD STYLE */
+    .event-card {
+      background: #fff;
+      border: 1px solid #e0d5c1;
+      border-radius: 12px;
+      padding: 1rem;
+      width: 100%;
+      margin: 0.5rem 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .event-card h3 {
+      font-family: var(--font-serif);
+      color: var(--accent-rose);
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .event-card p {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin: 0.2rem;
+      border: none;
+      box-shadow: 0 3px 8px rgba(212, 175, 55, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent-rose);
+      border: 1px solid var(--accent-rose);
+      box-shadow: none;
+    }
+
+    .scroll-hint {
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-top: 1rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container" id="app">
+    
+    <!-- SECTION 1: INTERACTIVE ENVELOPE -->
+    <section class="envelope-section" id="envelope" onclick="openEnvelope()">
+      <div class="curtain-left"></div>
+      <div class="curtain-right"></div>
+      <div class="wax-seal">
+        <span>A & R</span>
+        <span style="font-size:0.5rem; margin-top:2px;">TAP TO OPEN</span>
+      </div>
+
+      <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+      <p class="sub-title" style="color: var(--gold);">TOGETHER WITH THEIR FAMILIES</p>
+      <h1 class="names" style="color: #fff;">Mohammed Avaiz<br><span style="font-size: 1.6rem; color: var(--gold);">&</span><br>Rifah</h1>
+      <p style="font-size: 0.8rem; color: #d0e0d5; margin-top: 0.8rem;">INVITE YOU TO CELEBRATE THEIR WEDDING</p>
+      <div class="scroll-hint">Scroll Down ↓</div>
+    </section>
+
+    <!-- SECTION 2: INTRODUCTION & COUPLE -->
+    <section>
+      <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+      <p class="sub-title">"And We created you in pairs..."</p>
+      
+      <!-- CUTE ANIMATED MUSLIM COUPLE SVG -->
+      <div class="couple-avatar">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" fill="#f4ebd9"/>
+          <!-- Groom -->
+          <path d="M65 170 C65 120 75 110 85 110 C95 110 105 120 105 170 Z" fill="#ffffff" stroke="#2c221e" stroke-width="2"/>
+          <circle cx="85" cy="85" r="22" fill="#f8d7da"/>
+          <path d="M63 75 C63 60 107 60 107 75" fill="#ffffff" stroke="#2c221e" stroke-width="2"/>
+          <!-- Bride -->
+          <path d="M100 170 C100 120 115 110 130 110 C145 110 160 120 160 170 Z" fill="#9e4b6c"/>
+          <circle cx="130" cy="88" r="20" fill="#f8d7da"/>
+          <path d="M108 85 C108 60 152 60 152 85 C152 110 108 110 108 85 Z" fill="#d4af37" opacity="0.9"/>
+          <!-- Heart -->
+          <path d="M100 45 C100 35 115 35 115 45 C115 55 100 65 100 65 C100 65 85 55 85 45 C85 35 100 35 100 45 Z" fill="#9e4b6c"/>
+        </svg>
+      </div>
+
+      <h1 class="names">Mohammed Avaiz<br>& Rifah</h1>
+      <p style="font-size: 0.85rem; line-height: 1.4; color: #555;">
+        Warmly welcome you and your family to share their joy and invoke blessings for their new beginning.
+      </p>
+      <div class="scroll-hint" style="color: var(--accent-rose);">View Events ↓</div>
+    </section>
+
+    <!-- SECTION 3: EVENTS & VENUES -->
+    <section style="justify-content: flex-start; padding-top: 1.5rem;">
+      <p class="sub-title" style="margin-bottom: 0.5rem;">CELEBRATION SCHEDULE</p>
+      
+      <!-- NIKAH CARD -->
+      <div class="event-card">
+        <h3>The Nikah</h3>
+        <p><strong>Date:</strong> Thursday, 17th December 2026</p>
+        <p><strong>Venue:</strong> Charminar Masjid, Bangalore</p>
+        <a href="https://maps.google.com/?q=Charminar+Masjid+Bangalore" target="_blank" class="btn">📍 MAPS</a>
+      </div>
+
+      <!-- WALIMA CARD -->
+      <div class="event-card">
+        <h3>The Valima</h3>
+        <p><strong>Date:</strong> Saturday, 19th December 2026</p>
+        <p><strong>Venue:</strong> Shams Convention Centre[span_0](start_span)[span_0](end_span), Shivajinagar</p>
+        <a href="https://maps.google.com/?q=Shams+Convention+Centre+Shivajinagar+Bangalore" target="_blank" class="btn">📍 MAPS</a>
+      </div>
+
+      <div style="margin-top: 0.5rem;">
+        <a href="https://api.whatsapp.com/send?text=InshaAllah%20I%20will%20be%20attending%20the%20wedding%20events%20of%20Avaiz%20%26%20Rifah!" target="_blank" class="btn btn-secondary">💌 RSVP VIA WHATSAPP</a>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    function openEnvelope() {
+      document.getElementById('envelope').classList.add('open');
+    }
+  </script>
+</body>
+</html>
